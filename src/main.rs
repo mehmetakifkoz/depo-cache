@@ -68,18 +68,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         if let Some(cap) = re.captures(&html) {
                             let barcode = &cap[0];
                             println!("Found barcode: {}", barcode);
-
                             // Save to dictionary
                             barcodes.insert(barcode.to_string(), id.to_string());
+                            // Save all barcodes to farmazonrx.json 
+                            let mut file = File::create("farmazonrx.json")?;
+                            file.write_all(serde_json::to_string_pretty(&barcodes)?.as_bytes())?;
+                            println!("All barcodes saved to farmazonrx.json");
                         } else {
                             println!("No barcode found for ID: {}", id);
                         }
                     }
-
-                    // Save all barcodes to farmazonrx.json at the end
-                    let mut file = File::create("farmazonrx.json")?;
-                    file.write_all(serde_json::to_string_pretty(&barcodes)?.as_bytes())?;
-                    println!("All barcodes saved to farmazonrx.json");
             }
 
             "2" => {
