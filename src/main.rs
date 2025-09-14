@@ -59,7 +59,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         }
 
                         // Wait a little for page to load
-                        async_std::task::sleep(std::time::Duration::from_secs(1)).await;
+                        async_std::task::sleep(std::time::Duration::from_secs(3)).await;
 
                         // Get page HTML
                         let html = current_page.content().await?;
