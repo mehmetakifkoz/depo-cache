@@ -35,7 +35,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         match choice {
             "1" => {
-                println!("Start selected (empty for now)...");
+                println!("Start selected...");
                 // TODO: Add your script actions here
                     let mut barcodes: HashMap<String, String> = HashMap::new();
                     let re = Regex::new(r"\b\d{13}\b")?;
